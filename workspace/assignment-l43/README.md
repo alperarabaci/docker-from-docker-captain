@@ -1,7 +1,7 @@
 ### Dockerizing Sample Node JS App
 #### Create image using Dockerfile
 docker build -t sample-node-app  .
-#### Run (used with --rm, it deletes container when container stop)
+#### Run (used with --rm, deletes the container when the container stops)
 docker container run --rm -p 80:3000 --name nodeapp sample-node-app
 #### Send to repo: (https://hub.docker.com/u/alperarabaci)
 docker image tag sample-node-app  alperarabaci/sample-node-app

@@ -40,8 +40,20 @@ EXPOSE 3000
 RUN apk add --update tini
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-COPY package.json /usr/src/app
-RUN npm install
-RUN npm cache clean --force
-COPY . /usr/src/app
-CMD /sbin/tini -- node ./bin/www
+# dizini soyledikten sonra artik bir daha oraya at demeye gerek yok.
+# yeni dosya adini verdik.
+# COPY package.json /usr/src/app
+COPY package.json package.json
+# iki satir olarak ekledigim komutu teke indirdi
+# bunlari ";" ile ayni satirda verebiliyorsun ama
+# o zaman bir baglari olmuyor.
+# "&&" ile yapinca ikinci ilki basarili ise calisiyor.
+# RUN npm install
+# RUN npm cache clean --force
+RUN npm install && npm cache clean --force
+# Yukaridaki ile ayin mantik, zaten bu dizndeyiz
+# Onun icin direkt ne varsa buraya at.
+#COPY . /usr/src/app
+COPY . .
+#CMD /sbin/tini -- node ./bin/www
+CMD ["tini", "--", "node", "./bin/www"]
