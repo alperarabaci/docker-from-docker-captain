@@ -50,7 +50,7 @@ COPY package.json package.json
 # "&&" ile yapinca ikinci ilki basarili ise calisiyor.
 # RUN npm install
 # RUN npm cache clean --force
-RUN npm install && npm cache clean --force
+RUN npm install && npm cache clean
 # Yukaridaki ile ayin mantik, zaten bu dizndeyiz
 # Onun icin direkt ne varsa buraya at.
 #COPY . /usr/src/app
